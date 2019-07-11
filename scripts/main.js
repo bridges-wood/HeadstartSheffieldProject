@@ -83,7 +83,7 @@ function showPrefs() {
 
 function send() {
   var prefs = $('.custom-range');
-  var s = '';
+  var s = '{';
   for (var i = 0; i < prefs.length; i++) {
     var pref = prefs[i];
     var classes = pref.className.split(' ');
@@ -94,8 +94,18 @@ function send() {
       }
     }
     var val = pref.value;
-    s += metric + '|' + val + ',';
+    s += metric + ':' + val;
+    if (i != prefs.length - 1) {
+      s += ',';
+    }
   }
-  console.log(s);
-  location.href = 'results.php';
+  s += '}';
+  location.href = 'results.php?bc=' + s;
+}
+
+function tweet(){
+  var url = "https://twitter.com/intent/tweet";
+  var text = 'These are my top personalised universities!\nFind yours at https://myranker.co.uk!\nhttps://myranker.co.uk/results.php?r=3432998';
+  var hashtags = "MyRanker, university";
+  window.open(url+"?text="+text+";hashtags="+hashtags+"","width=500,height=300");
 }

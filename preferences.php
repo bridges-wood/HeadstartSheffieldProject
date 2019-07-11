@@ -19,25 +19,25 @@
 
   <div class="container main">
     <b class="text-center">League Table Rankings</b>
-    <input type="range" class="custom-range mb-1 league-table-rankings" value="5" min="0" max="10" step="1" >
+    <input type="range" class="custom-range mb-1 leagueTablePref" value="5" min="0" max="10" step="1">
     <br><br>
     <b class="text-center">Student Satisfaction</b>
-    <input type="range" class="custom-range mb-1 student-satisfaction" value="5" min="0" max="10" step="1" >
+    <input type="range" class="custom-range mb-1 studentSatisfactionPref" value="5" min="0" max="10" step="1">
     <br><br>
     <b class="text-center">Employability</b>
-    <input type="range" class="custom-range mb-1 employability" value="5" min="0" max="10" step="1" >
+    <input type="range" class="custom-range mb-1 employabilityPref" value="5" min="0" max="10" step="1">
     <br><br>
     <b class="text-center">Research Quality</b>
-    <input type="range" class="custom-range mb-1 research-quality" value="5" min="0" max="10" step="1" >
+    <input type="range" class="custom-range mb-1 researchQualityPref" value="5" min="0" max="10" step="1">
     <br><br>
     <b class="text-center">Student-to-Staff Ratio</b>
-    <input type="range" class="custom-range mb-1 sts-ratio" value="5" min="0" max="10" step="1" >
+    <input type="range" class="custom-range mb-1 studentToStaffPref" value="5" min="0" max="10" step="1">
     <br><br>
     <b class="text-center">Cost of Living</b>
-    <input type="range" class="custom-range mb-1 cost-of-living" value="5" min="0" max="10" step="1" >
+    <input type="range" class="custom-range mb-1 costOfLivingPref" value="5" min="0" max="10" step="1">
     <br><br>
     <b class="text-center">International Student Ratio</b>
-    <input type="range" class="custom-range mb-1 international-student-ratio" value="5" min="0" max="10" step="1" >
+    <input type="range" class="custom-range mb-1 internationalStudentPref" value="5" min="0" max="10" step="1">
     <br><br>
     <!-- <label for="customRange3">Campus</label><label for="customRange3">City</label>
     <input type="range" class="custom-range mb-1" value="5.5" min="1" max="10" step="1" id="customRange3">

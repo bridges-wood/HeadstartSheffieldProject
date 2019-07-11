@@ -1,26 +1,36 @@
 <?php
 
-  function checkIfPermalinkExists($p) {
-    return false;
-  }
+  // function checkIfPermalinkExists($p) {
+  //   return false;
+  // }
+  //
+  // function generateRandomString($length = 10) {
+  //   // https://stackoverflow.com/questions/4356289/php-random-string-generator
+  //   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  //   $charactersLength = strlen($characters);
+  //   $randomString = '';
+  //   for ($i = 0; $i < $length; $i++) {
+  //     $randomString .= $characters[rand(0, $charactersLength - 1)];
+  //   }
+  //   return $randomString;
+  // }
+  //
+  // if (!isset($_GET['r'])) {
+  //   $permalink = generateRandomString();
+  //   while (checkIfPermalinkExists($permalink)) {
+  //     $permalink = generateRandomString();
+  //   }
+  // }
 
-  function generateRandomString($length = 10) {
-    // https://stackoverflow.com/questions/4356289/php-random-string-generator
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-      $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-  }
 
-  // if
+  $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
 
-  $permalink = generateRandomString();
-  while (checkIfPermalinkExists($permalink)) {
-    $permalink = generateRandomString();
-  }
+  $msg = $_GET['bc'];
+  $len = strlen($msg);
+
+  socket_sendto($sock, $msg, $len, 0, '127.0.0.1', 8000);
+  socket_close($sock);
+
 
  ?>
 
