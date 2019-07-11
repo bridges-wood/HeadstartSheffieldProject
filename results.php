@@ -1,8 +1,8 @@
 <?php
   $host = 'localhost';
   $dbname = 'myranker';
-  $username = 'root';
-  $password = 'root';
+  $username = 'myranker';
+  $password = 'myranker';
 
   $conn = new mysqli($host, $username, $password, $dbname);
 
