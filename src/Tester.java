@@ -31,9 +31,9 @@ public class Tester {
 			temp.graduateProspects = Double.parseDouble(attributes[13]);
 		}*/
 		Gson g = new Gson();
-		String prefs = "{id:1, other:2}";
+		String prefs = "{id:1,other:2}";
 		image p = g.fromJson(prefs, image.class);
-		System.out.println(p.id + p.other);
+		System.out.println(p.id + " " + p.other);
 	}
 	
 	public class image{

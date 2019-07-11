@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 
 public class Server {
 
-	public static ArrayList<UniversityRanks> ranked;
+	public static ArrayList<UniversityRanks> ranked = new ArrayList<UniversityRanks>();
 
 	public static void main(String[] args) {
 		new Server().startServer(); // Starts server to listen for connections.

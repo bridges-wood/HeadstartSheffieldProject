@@ -27,19 +27,19 @@ public class UniRanker {
 		TreeMap<Double, University> map = new TreeMap<Double, University>(Collections.reverseOrder());
 		for (University u : unis) {
 			switch (i) {
-			case 1:
+			case 0:
 				map.put(u.studentSatisfaction, u);
 				break;
-			case 4:
+			case 3:
 				map.put(u.costOfLiving, u);
 				break;
-			case 5:
+			case 4:
 				map.put(u.studentFacultyRatio, u);
 				break;
-			case 8:
+			case 7:
 				map.put(u.internationalStudentsRatio, u);
 				break;
-			case 9:
+			case 8:
 				map.put(u.graduateProspects, u);
 				break;
 			}
@@ -49,23 +49,25 @@ public class UniRanker {
 		int counter = 1;
 		while (doubleIt.hasNext()) {
 			Map.Entry<Double, University> me = (Map.Entry<Double, University>) doubleIt.next();
-			if (i == 1) {
+			if (i == 0) {
 				UniversityRanks temp = new UniversityRanks();
 				temp.name = me.getValue().name;
 				temp.studentSatisfactionRank = counter;
+				ranked.add(temp);
+				System.out.println(ranked.size());
 			} else {
 				for (UniversityRanks u : ranked) {
 					switch (i) {
-					case 4:
+					case 3:
 						u.costOfLivingRank = counter;
 						break;
-					case 5:
+					case 4:
 						u.studentFacultyRatioRank = counter;
 						break;
-					case 8:
+					case 7:
 						u.internationalStudentsRatioRank = counter;
 						break;
-					case 9:
+					case 8:
 						u.graduateProspectsRank = counter;
 						break;
 					}
@@ -86,16 +88,16 @@ public class UniRanker {
 		TreeMap<Integer, University> map = new TreeMap<Integer, University>(Collections.reverseOrder());
 		for (University u : unis) {
 			switch (i) {
-			case 2:
+			case 1:
 				map.put(u.nationwideRanking, u);
 				break;
-			case 3:
+			case 2:
 				map.put(u.subjectSpecificRanking, u);
 				break;
-			case 6:
+			case 5:
 				map.put(u.researchOutput, u);
 				break;
-			case 7:
+			case 6:
 				map.put(u.entryRequirements, u);
 				break;
 			}
@@ -133,6 +135,9 @@ public class UniRanker {
 	 */
 	public static ArrayList<UniversityRanks> rankUnis() {
 		generateUnis();
+		//for(University u : unis) {
+		//	System.out.println(u.name);
+		//}
 		for (int i = 0; i < 9; i++) {
 			switch (i) {
 			case 0:

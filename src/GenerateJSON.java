@@ -19,6 +19,10 @@ public class GenerateJSON {
 
 
 	private static String generateJson(String prefs, ArrayList<UniversityRanks> ranked) {
+		System.out.println("Here");
+		for(UniversityRanks u : ranked) {
+			System.out.println(u.name);
+		}
 		Gson g = new Gson();
 		Preferences p = g.fromJson(prefs, Preferences.class);
 		TreeMap<Double, String> universityScores = new TreeMap<Double, String>(Collections.reverseOrder());
