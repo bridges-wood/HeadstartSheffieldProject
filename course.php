@@ -18,10 +18,10 @@
   </div>
   <div class="container main">
     <div class="alevel-container container"></div>
-    <select class="courses">
+    <select class="courses form-control">
       <option selected>Course</option>
     </select>
-    <div class="text-center mb-2 show-prefs">
+    <div class="text-center mt-2 mb-2 show-prefs">
       <button class="btn btn-danger text-center" onclick="showPrefs();">Next &rarr;</button>
     </div>
   </div>

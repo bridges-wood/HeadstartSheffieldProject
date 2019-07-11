@@ -56,13 +56,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="scripts/main.js"></script>
   <script>
-
-    $.ready(function() {
-      $.get('unis.json', function (data) {
-        console.log(data);
-      });
+    $.get('unis.json', function (data) {
+      setRankings(data);
     });
 
+    // var unis = ;
+
+    // setRankings(unis);
 
   </script>
 </body>

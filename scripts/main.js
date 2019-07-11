@@ -56,7 +56,7 @@ function setRankings(unis) {
   for (var i = 0; i < unis.length; i++) {
     var uni = unis[i];
     var card = $('<div class="card"></div>');
-    var cardHeader = $('<div class="card-header" id="heading-' + uni['id'] + '"><h2 class="mb-0"><button class="btn btn-link collapsed ranking-table-uni-name" type="button" data-toggle="collapse" data-target="#collapse-' + uni['id'] + '" aria-expanded="false" aria-controls="#collapse-' + uni['id'] + '">' + (i + 1) + '. <img class="ranking-table-uni-logo" alt="" src="' + uni['logo'] + '">' + uni['name'] + '</button></h2></div>');
+    var cardHeader = $('<div class="card-header" id="heading-' + uni['id'] + '"><h2 class="mb-0"><button class="btn btn-link collapsed ranking-table-uni-name" type="button" data-toggle="collapse" data-target="#collapse-' + uni['id'] + '" aria-expanded="false" aria-controls="#collapse-' + uni['id'] + '">' + (i + 1) + '. <img class="ranking-table-uni-logo" alt="" src="resources/' + uni['id'] + '.png">' + uni['name'] + '</button></h2></div>');
     card.append(cardHeader);
     var collapsibleBody = $('<div id="collapse-' + uni['id'] + '" class="collapse" aria-labelledby="heading' + uni['id'] + '" data-parent="#ranking-table"></div>');
     var cardBody = $('<div class="card-body">' + uni['info'] + '</div>');
