@@ -3,11 +3,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeMap;
+
+import com.google.gson.Gson;
 
 public class Tester {
 
 	public static void main(String[] args) {
-		String[] lines = readFile("res/unis.csv");
+		/*String[] lines = readFile("resources/unidata.csv");
 		int numOfUnis = lines.length + 1;
 		for (String line : lines) {
 			String[] attributes = line.split(",");
@@ -21,12 +24,21 @@ public class Tester {
 			temp.subjectSpecificRanking = numOfUnis - Integer.parseInt(attributes[6]);
 			temp.costOfLiving = Double.parseDouble(attributes[7]);
 			temp.studentFacultyRatio = Double.parseDouble(attributes[8]);
-			temp.researchOutput = Integer.parseInt(attributes[9]);
+			temp.researchOutput = (int) Double.parseDouble(attributes[9]);
 			temp.entryRequirements = Integer.parseInt(attributes[10]); // UCAS points
 			temp.internationalStudentsRatio = Double.parseDouble(attributes[11]);
 			temp.extraYear = Boolean.parseBoolean(attributes[12]);
 			temp.graduateProspects = Double.parseDouble(attributes[13]);
-		}
+		}*/
+		Gson g = new Gson();
+		String prefs = "{id:1, other:2}";
+		image p = g.fromJson(prefs, image.class);
+		System.out.println(p.id + p.other);
+	}
+	
+	public class image{
+		public int id;
+		public int other;
 	}
 	
 	private static String[] readFile(String filename) {
