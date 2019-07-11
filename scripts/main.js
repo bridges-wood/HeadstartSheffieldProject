@@ -93,7 +93,8 @@ function send() {
         var metric = classes[j];
       }
     }
-    var val = pref.value;
+    var val = parseInt(pref.value) + 1;
+
     s += metric + ':' + val;
     if (i != prefs.length - 1) {
       s += ',';
@@ -103,9 +104,16 @@ function send() {
   location.href = 'results.php?bc=' + s;
 }
 
-function tweet(permalink){
+function tweet(permalink) {
   var url = "https://twitter.com/intent/tweet";
   var text = 'https://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at https://myranker.co.uk!';
   var hashtags = "MyRanker, university";
   window.open(url+"?text="+text+";hashtags="+hashtags+"","width=500,height=300");
+}
+
+function facebook(permalink) {
+  var url="https://www.facebook.com/sharer/sharer.php?u=";
+  var myrankerurl = "https://www.myranker.co.uk";
+  var text = 'https://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at https://myranker.co.uk!';
+  window.open(url+myrankerurl+"&quote="+text+"","width=500,height=300");
 }

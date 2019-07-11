@@ -2,16 +2,54 @@
   {
     "id": "cambridge",
     "name": "University of Cambridge",
-    "info": "UoC"
+    "info": "The Cambridge course is broad and deep - providing you with skills highly prized in industry and for research, and giving skills to create future technology. All aspects of modern computer science are covered, along with the underlying theory and foundations in economics, law and business. You also develop practical skills, such as programming and hardware systems. The course offers an optional fourth year leading to an MEng degree (progression to the fourth year is dependent on satisfactory performance)."
+
   },
   {
     "id": "st_andrews",
     "name": "University of St Andrews",
-    "info": "UoSA"
+    "info": "Over the last 600 years, the University of St Andrews has established a reputation as one of the world’s leading teaching centres. Today, we offer a flexible degree structure based on your choice of subject specialism, creating an environment which nurtures inquisitive minds and a culture of shared learning."
   },
   {
     "id": "hull",
     "name": "University of Hull",
-    "info": "UoH"
+    "info": "This programme offers an inspiring combination of computer science and video game development. We'll give you a grounding in computer science, set within the context of game programming – concentrating on programming, simulation, interactive real-time graphics and artificial intelligence. - Accredited by the British Computer Society (the Chartered Institute for IT) to meet the requirements for full Chartered IT Professional and partial Chartered Engineer status."
+  },
+  {
+    "id": "sheffield",
+    "name": "University of Sheffield",
+    "info": "Computer science at Sheffield is a rare blend of advanced science, business experience and creativity. This is the only computer science department in the UK with its own student-run software company – Genesys Solutions. You will get the chance to work for Genesys as part of your course. Teaching staff are experts in iPhone, Android and VR technology. Guest lecturers come from IBM, Microsoft and HP. Artificial intelligence is developing fast. As the world tries to keep up, experts are in demand. Sheffield is a great place to learn about AI because we encourage a deep understanding of biologically inspired algorithms, their relationship to biological intelligence and the nature of consciousness itself."
+  },
+  {
+    "id": "imperial",
+    "name": "Imperial College London",
+    "info": "With the spread of computing procedures and mathematical ideas into many areas, there is high demand for professionals who are expert in both. Our Mathematics and Computer Science degrees are mathematical courses orientated towards computing science. Taught jointly by the Departments of Computing and Mathematics, they provide a firm foundation in mathematics, particularly in pure mathematics, numerical analysis and statistics."
+
+  },
+  {
+    "id": "bournemouth",
+    "name": "Bournemouth University",
+    "info": "Over the last 600 years, the University of St Andrews has established a reputation as one of the world’s leading teaching centres. Today, we offer a flexible degree structure based on your choice of subject specialism, creating an environment which nurtures inquisitive minds and a culture of shared learning."
+  },
+  {
+    "id": "surrey",
+    "name": "University of Surrey",
+    "info": "Our BSc Computer Science course will develop your understanding of the concepts and principles that underpin computing systems.We will provide you with the balance of knowledge and skills you need to design, implement and troubleshoot software and complex systems to a professional standard.You will be provided with opportunities to apply theory to real-world scenarios and may – like many of our students – choose to take a Professional Training placement year, giving you invaluable industry experience."
+
+  },
+  {
+    "id": "chester",
+    "name": "University of Chester",
+    "info": "Throughout our course you will explore how computers work, how computer software is developed, how computers communicate with each other, and the ways in which software manipulates, stores and processes data. You will work effectively in teams, working on diverse projects, which is the most important skill that employers require."
+  },
+  {
+    "id": "loughborough",
+    "name": "University of Loughborough",
+    "info": "Computer Scientists need a diverse set of practical and theoretical skills. Our BSC Computer Science degree provides you with a strong foundation in the critical areas of computer science while also giving you the opportunity to tailor the degree to your own strengths, interests and career aspirations through an optional placement year and specialised modules and project work taught and supervised by experts in their respective fields."
+  },
+  {
+    "id": "aberystwyth",
+    "name": "Aberystwyth University",
+    "info": "Computer Science covers a vast range of topics including programming, computer operating systems, software design, and the engineering of large software systems; meaning it is our Department’s most flexible degree, providing core modules that are key for a career in Computer Science. On our **Chartered Institute for IT (BCS) accredited course** you will acquire specialist skills such as software engineering, graphics and visualisation, artificial intelligence, robotics, telematics, mobile computing and open source computing, that are highly sought out by employers in this industry. The prestigious MComp in Computer Science issimilar to the Bachelor's degree but provides an extra year of instruction in the form of and integrated Masters"
   }
 ]

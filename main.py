@@ -2,9 +2,9 @@ import socket
 import sys
 
 HOST, PORT = "localhost", 8000
-data = '{leagueTablePref:3,studentSatisfactionPref:6,employabilityPref:4,researchQualityPref:7,studentToStaffPref:4,costOfLivingPref:6,internationalStudentPref:3}'
+data = '{leagueTablePref:5,studentSatisfactionPref:5,employabilityPref:5,researchQualityPref:5,studentToStaffPref:5,costOfLivingPref:5,internationalStudentPref:5}'
 
-# data = 
+# data =
 
 # Create a socket (SOCK_STREAM means a TCP socket)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

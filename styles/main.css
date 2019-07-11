@@ -41,3 +41,13 @@
 .heading {
   margin-bottom: 32px;
 }
+
+.share-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn.twitter, .btn.facebook {
+  margin: 10px;
+}
