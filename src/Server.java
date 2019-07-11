@@ -4,13 +4,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server {
 
+	public static ArrayList<UniversityRanks> ranked;
+
 	public static void main(String[] args) {
-		new Server().startServer();
+		new Server().startServer(); // Starts server to listen for connections.
+		ranked = UniRanker.rankUnis();
 	}
 
 	public void startServer() {
@@ -51,8 +55,8 @@ public class Server {
 		@Override
 		public void run() {
 			System.out.println("Got a client !");
-			String toSend = receive(clientSocket);
-			// Take JSON and send to generate JSON.
+			String recieved = receive(clientSocket);
+			String toSend = GenerateJSON.go(recieved, ranked);
 			System.out.println("Data from Client: " + toSend);
 			try {
 				send(toSend, clientSocket);
@@ -92,7 +96,7 @@ public class Server {
 			try {
 				BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				String content = br.readLine();
-				// Parse content as Json and return.
+				return content;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
