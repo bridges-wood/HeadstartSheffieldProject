@@ -1,8 +1,8 @@
 import socket
 import sys
 
-HOST, PORT = "localhost", 8000
-data = '{leagueTablePref:5,studentSatisfactionPref:5,employabilityPref:5,researchQualityPref:5,studentToStaffPref:5,costOfLivingPref:5,internationalStudentPref:5}'
+HOST, PORT = "localhost", 7000
+data = '{leagueTablePref:11,studentSatisfactionPref:11,employabilityPref:11,researchQualityPref:11,studentToStaffPref:2,costOfLivingPref:1,internationalStudentPref:11}'
 
 # data =
 

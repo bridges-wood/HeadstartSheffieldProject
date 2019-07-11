@@ -1,6 +1,47 @@
 <?php
+  $host = 'localhost';
+  $dbname = 'myranker';
+  $username = 'root';
+  $password = 'root';
 
-  function checkIfPermalinkExists($p) {
+  $conn = new mysqli($host, $username, $password, $dbname);
+
+  function checkIfPermalinkExists($conn, $p) {
+    $sql = 'SELECT permalink, info
+             FROM main
+             WHERE permalink=\'' . $p . '\'';
+
+    $result = $conn->query($sql);
+
+
+    while ($row = $result->fetch_assoc()) {
+      $result->free();
+      return true;
+    }
+
+    $result->free();
+    return false;
+  }
+
+  function setPermalink($conn, $permalink, $s) {
+    $stmt = $conn->prepare("INSERT INTO main (permalink, info) VALUES (?, ?)");
+    $stmt->bind_param("ss", $p, $info);
+    $p = $permalink;
+    $info = $s;
+    $stmt->execute();
+  }
+
+  function getInfoFromPermalink($conn, $permalink) {
+    $sql = 'SELECT info
+             FROM main
+             WHERE permalink=\'' . $permalink . '\'';
+
+    $result = $conn->query($sql);
+
+
+    while ($row = $result->fetch_assoc()) {
+      return $row['info'];
+    }
     return false;
   }
 
@@ -17,12 +58,22 @@
 
   if (!isset($_GET['r'])) {
     $permalink = generateRandomString();
-    while (checkIfPermalinkExists($permalink)) {
+    while (checkIfPermalinkExists($conn, $permalink)) {
       $permalink = generateRandomString();
     }
+    setPermalink($conn, $permalink, $_GET['bc']);
+    header('Location: results.php?r=' . $permalink);
+    die();
   }
 
-  $bc = $_GET['bc'];
+  $permalink = $_GET['r'];
+
+  $bc = getInfoFromPermalink($conn, $_GET['r']);
+
+  // if (!$bc) {
+  //   header('Location: alevels.php');
+  //   die();
+  // }
 
   $fp = stream_socket_client("tcp://localhost:7000", $errno, $errstr, 5);
   if (!$fp) {
@@ -40,6 +91,8 @@
     $d .= ']';
 
   }
+
+  $conn->close();
 
 
 
