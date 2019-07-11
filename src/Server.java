@@ -68,7 +68,7 @@ public class Server {
 		/**
 		 * Sends a string over a specified socket, back to the client that submitted the
 		 * request.
-		 * 
+		 *
 		 * @param dataString
 		 *            The string to be sent.
 		 * @param socket
@@ -87,7 +87,7 @@ public class Server {
 
 		/**
 		 * Receives string data from the given client socket.
-		 * 
+		 *
 		 * @param socket
 		 *            The clients socket.
 		 * @return The string sent by the client.

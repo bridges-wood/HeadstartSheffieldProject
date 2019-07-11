@@ -11,12 +11,18 @@
   width: 100%;
 }
 
+.heading img {
+  max-width: 90%;
+}
+
 .main {
   /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
+
 
 .hidden {
   display: none;

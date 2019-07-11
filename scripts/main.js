@@ -25,17 +25,17 @@ var counter = 0;
 
 function createALevel() {
   var alevel = $('<div class="alevel input-group row c-' + counter + '"></div>');
-  var subjectSelect = $('<select class="custom-select col-8 subject-select"></select>');
+  var subjectSelect = $('<select class="custom-select col-sm-12 col-md-8 subject-select"></select>');
   subjectSelect.append($('<option selected>Subject</option>'));
   for (var i = 0; i < listOfALevels.length; i++) {
     subjectSelect.append($('<option value="' + listOfALevels[i] + '">' + listOfALevels[i] + '</option>'));
   }
-  var gradeSelect = $('<select class="custom-select col-2 grade-select"></select>');
+  var gradeSelect = $('<select class="custom-select col-sm-7 col-md-2 grade-select"></select>');
   gradeSelect.append($('<option selected>Predicted grade</option>'));
   for (var i = 0; i < listOfGrades.length; i++) {
     gradeSelect.append($('<option value="' + listOfGrades[i] + '">' + listOfGrades[i] + '</option>'));
   }
-  var removeSubject = $('<button class="btn btn-danger col-1 offset-1 remove-subject" onclick="removeALevel(' + counter + ')">Remove</button>');
+  var removeSubject = $('<button class="btn btn-danger col-sm-4 col-md-1 offset-md-1 remove-subject" onclick="removeALevel(' + counter + ')">Remove</button>');
   alevel.append(subjectSelect);
   alevel.append(gradeSelect);
   alevel.append(removeSubject);
