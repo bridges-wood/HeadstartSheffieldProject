@@ -28,7 +28,7 @@ public class Server {
 				try {
 					@SuppressWarnings("resource") // Because the server should always be up, the socket is never closed
 													// programmatically.
-					ServerSocket serverSocket = new ServerSocket(8000);
+					ServerSocket serverSocket = new ServerSocket(7000);
 					System.out.println("Waiting for clients to connect...");
 					while (true) {
 						Socket clientSocket = serverSocket.accept();
@@ -80,7 +80,7 @@ public class Server {
 			DataOutputStream out = new DataOutputStream(outputStream); // Creates an output stream to the other end of
 																		// the socket.
 			System.out.println("Sending messages to the client");
-			out.writeUTF(dataString); // Writes data to the client.
+			out.writeUTF(dataString +"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // Writes data to the client.
 			System.out.println("Closing socket and terminating thread.");
 			out.flush(); // Cleans buffer.
 		}

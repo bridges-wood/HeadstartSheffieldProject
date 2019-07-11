@@ -103,9 +103,9 @@ function send() {
   location.href = 'results.php?bc=' + s;
 }
 
-function tweet(){
+function tweet(permalink){
   var url = "https://twitter.com/intent/tweet";
-  var text = 'These are my top personalised universities!\nFind yours at https://myranker.co.uk!\nhttps://myranker.co.uk/results.php?r=3432998';
+  var text = 'https://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at https://myranker.co.uk!';
   var hashtags = "MyRanker, university";
   window.open(url+"?text="+text+";hashtags="+hashtags+"","width=500,height=300");
 }

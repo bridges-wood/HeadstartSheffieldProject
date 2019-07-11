@@ -1,38 +1,53 @@
 <?php
 
-  // function checkIfPermalinkExists($p) {
-  //   return false;
-  // }
-  //
-  // function generateRandomString($length = 10) {
-  //   // https://stackoverflow.com/questions/4356289/php-random-string-generator
-  //   $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  //   $charactersLength = strlen($characters);
-  //   $randomString = '';
-  //   for ($i = 0; $i < $length; $i++) {
-  //     $randomString .= $characters[rand(0, $charactersLength - 1)];
-  //   }
-  //   return $randomString;
-  // }
-  //
-  // if (!isset($_GET['r'])) {
-  //   $permalink = generateRandomString();
-  //   while (checkIfPermalinkExists($permalink)) {
-  //     $permalink = generateRandomString();
-  //   }
-  // }
+  function checkIfPermalinkExists($p) {
+    return false;
+  }
 
+  function generateRandomString($length = 10) {
+    // https://stackoverflow.com/questions/4356289/php-random-string-generator
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+  }
 
-  $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+  if (!isset($_GET['r'])) {
+    $permalink = generateRandomString();
+    while (checkIfPermalinkExists($permalink)) {
+      $permalink = generateRandomString();
+    }
+  }
 
-  $msg = $_GET['bc'];
-  $len = strlen($msg);
+  $bc = $_GET['bc'];
 
-  socket_sendto($sock, $msg, $len, 0, '127.0.0.1', 8000);
-  socket_close($sock);
+  $fp = stream_socket_client("tcp://localhost:7000", $errno, $errstr, 5);
+  if (!$fp) {
+      echo "$errstr ($errno)<br />\n";
+  } else {
+    fwrite($fp, $bc . "\n");
+    $c = fgets($fp, 500);
+    fclose($fp);
+    $c = substr($c, 2);
+    $d = '';
+    while ($c[0] != ']') {
+      $d .= $c[0];
+      $c = substr($c, 1);
+    }
+    $d .= ']';
+
+  }
+
 
 
  ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,11 +69,18 @@
     <br>
     <br>
     <p style="width: 100%;">Use this link to come back to your results at any time: <input style="width: 280px;" type="text" value="http://localhost/results.php?r=<?php echo $permalink; ?>"></p>
+    <br>
+    <br>
+    <div>
+      <button class="btn btn-info" onclick="tweet('<?php echo $permalink; ?>');">Tweet your results!</button>
+    </div>
   </div>
 
   <div class="container main">
     <div class="accordion" id="ranking-table"></div>
   </div>
+  <br>
+  <br>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -66,13 +88,47 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="scripts/main.js"></script>
   <script>
-    $.get('unis.json', function (data) {
-      setRankings(data);
+
+    $('unis.json', function(data) {
+      var u = <?php echo $d; ?>;
+      var v = [];
+      var keys = Object.keys();
+
+      for (var i = 0; i < keys.length; i++){
+        var key = keys[i];
+        var value = data[key];
+        
+      }
+
+        v.push({
+          'id': u[i],
+          'name': u[i],
+          'info': u[i]
+        });
+      }
+      setRankings(v);
     });
 
-    // var unis = ;
 
-    // setRankings(unis);
+    var l = [
+      {
+        "id": "cambridge",
+        "name": "University of Cambridge",
+        "info": "UoC"
+      },
+      {
+        "id": "st_andrews",
+        "name": "University of St Andrews",
+        "info": "UoSA"
+      },
+      {
+        "id": "hull",
+        "name": "University of Hull",
+        "info": "UoH"
+      }
+    ];
+
+
 
   </script>
 </body>

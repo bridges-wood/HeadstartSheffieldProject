@@ -25,7 +25,7 @@ public class GenerateJSON {
 		}
 		Gson g = new Gson();
 		Preferences p = g.fromJson(prefs, Preferences.class);
-		TreeMap<Double, String> universityScores = new TreeMap<Double, String>(Collections.reverseOrder());
+		TreeMap<Double, String> universityScores = new TreeMap<Double, String>();
 		for (UniversityRanks u : ranked) {
 			double league = p.leagueTablePref * (double) (u.nationwideRank + u.subjectRank);
 			double satisfaction = p.studentSatisfactionPref * (double) (u.studentSatisfactionRank);
