@@ -1,0 +1,17 @@
+[
+  {
+    "id": "cambridge",
+    "name": "University of Cambridge",
+    "info": "UoC"
+  },
+  {
+    "id": "st_andrews",
+    "name": "University of St Andrews",
+    "info": "UoSA"
+  },
+  {
+    "id": "hull",
+    "name": "University of Hull",
+    "info": "UoH"
+  }
+]

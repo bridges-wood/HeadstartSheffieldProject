@@ -9,6 +9,18 @@ var listOfGrades = [
   'E'
 ];
 
+var listOfCourses = [
+  'Chemistry',
+  'Civil Engineering',
+  'Computer Science',
+  'Economics',
+  'History',
+  'Marketing',
+  'Mathematics',
+  'Physics',
+  'Psychology'
+];
+
 var counter = 0;
 
 function createALevel() {
@@ -23,7 +35,6 @@ function createALevel() {
   for (var i = 0; i < listOfGrades.length; i++) {
     gradeSelect.append($('<option value="' + listOfGrades[i] + '">' + listOfGrades[i] + '</option>'));
   }
-  var spacer
   var removeSubject = $('<button class="btn btn-danger col-1 offset-1 remove-subject" onclick="removeALevel(' + counter + ')">Remove</button>');
   alevel.append(subjectSelect);
   alevel.append(gradeSelect);
@@ -45,7 +56,7 @@ function setRankings(unis) {
   for (var i = 0; i < unis.length; i++) {
     var uni = unis[i];
     var card = $('<div class="card"></div>');
-    var cardHeader = $('<div class="card-header" id="heading-' + uni['id'] + '"><h2 class="mb-0"><button class="btn btn-link collapsed ranking-table-uni-name" type="button" data-toggle="collapse" data-target="#collapse-' + uni['id'] + '" aria-expanded="false" aria-controls="#collapse-' + uni['id'] + '">' + (i + 1) + '. <img class="ranking-table-uni-logo" alt="" src="' + uni['logo'] + '">' + uni['name'] + '</button></h2></div>');
+    var cardHeader = $('<div class="card-header" id="heading-' + uni['id'] + '"><h2 class="mb-0"><button class="btn btn-link collapsed ranking-table-uni-name" type="button" data-toggle="collapse" data-target="#collapse-' + uni['id'] + '" aria-expanded="false" aria-controls="#collapse-' + uni['id'] + '">' + (i + 1) + '. <img class="ranking-table-uni-logo" alt="" src="resources/' + uni['id'] + '.png">' + uni['name'] + '</button></h2></div>');
     card.append(cardHeader);
     var collapsibleBody = $('<div id="collapse-' + uni['id'] + '" class="collapse" aria-labelledby="heading' + uni['id'] + '" data-parent="#ranking-table"></div>');
     var cardBody = $('<div class="card-body">' + uni['info'] + '</div>');
@@ -53,4 +64,48 @@ function setRankings(unis) {
     card.append(collapsibleBody);
     rankingTable.append(card);
   }
+}
+
+function showCourse() {
+  location.href = 'course.php';
+}
+
+function setCourses() {
+  var courses = $('.courses');
+  for (var i = 0; i < listOfCourses.length; i++) {
+    courses.append($('<option>' + listOfCourses[i] + '</option>'));
+  }
+}
+
+function showPrefs() {
+  location.href = 'preferences.php';
+}
+
+function send() {
+  var prefs = $('.custom-range');
+  var s = '{';
+  for (var i = 0; i < prefs.length; i++) {
+    var pref = prefs[i];
+    var classes = pref.className.split(' ');
+
+    for (var j = 0; j < classes.length; j++) {
+      if (classes[j] != 'custom-range' && classes[j] != 'mb-1') {
+        var metric = classes[j];
+      }
+    }
+    var val = pref.value;
+    s += metric + ':' + val;
+    if (i != prefs.length - 1) {
+      s += ',';
+    }
+  }
+  s += '}';
+  location.href = 'results.php?bc=' + s;
+}
+
+function tweet(){
+  var url = "https://twitter.com/intent/tweet";
+  var text = 'These are my top personalised universities!\nFind yours at https://myranker.co.uk!\nhttps://myranker.co.uk/results.php?r=3432998';
+  var hashtags = "MyRanker, university";
+  window.open(url+"?text="+text+";hashtags="+hashtags+"","width=500,height=300");
 }
