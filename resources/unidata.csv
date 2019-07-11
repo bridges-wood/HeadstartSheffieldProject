@@ -1,4 +1,3 @@
-id,university_name,type,is_russell_group,student_satisfaction,nationwide_ranking,subject_specific_ranking,cost_of_living,student_faculty_ratio,research_output,entry_requirements,international_students,extra_year,graduate_prospects
 sheffield,University of Sheffield,city,TRUE,4.04,33,19,883,14.3,3.17,144,0.17,TRUE,85
 cambridge,University of Cambridge,campus,TRUE,4.22,1,1,863,11,3.36,160,0.14,FALSE,95
 imperial,Imperial College London,city,TRUE,4.23,5,3,932,11.3,3.5,152,0.55,TRUE,91

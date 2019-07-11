@@ -12,5 +12,5 @@ public class University {
 	public double internationalStudentsRatio; // 8
 	public boolean extraYear;
 	public double graduateProspects; // 9
-
+	
 }
