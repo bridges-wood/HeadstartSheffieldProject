@@ -134,7 +134,7 @@ public class UniRanker {
 	 * Manager for ranking of universities in all major categories.
 	 */
 	public static ArrayList<UniversityRanks> rankUnis() {
-		generateUnis();
+		generateUnis(false);
 		//for(University u : unis) {
 		//	System.out.println(u.name);
 		//}
@@ -175,10 +175,14 @@ public class UniRanker {
 	/**
 	 * Generates all universities from stored csv file of university data.
 	 */
-	public static void generateUnis() {
+	public static void generateUnis(boolean live) {
 		String[] lines = readFile("resources/unidata.csv");
+		if(live) {
+			lines = readFile("leaguetables/guardiandata.csv");
+		}
 		int numOfUnis = lines.length + 1;
 		for (String line : lines) {
+			if(!live) {
 			String[] attributes = line.split(",");
 			University temp = new University();
 			temp.name = attributes[1];
@@ -195,6 +199,25 @@ public class UniRanker {
 			temp.extraYear = Boolean.parseBoolean(attributes[12]);
 			temp.graduateProspects = Double.parseDouble(attributes[13]);
 			unis.add(temp);
+			} else {
+				String[] attributes = line.split(",");
+				University temp = new University();
+				temp.nationwideRanking = numOfUnis - Integer.parseInt(attributes[0]);
+				temp.subjectSpecificRanking = numOfUnis - Integer.parseInt(attributes[0]);
+				temp.name = attributes[1];
+				temp.studentSatisfaction = Double.parseDouble(attributes[3]) + Double.parseDouble(attributes[4]) + Double.parseDouble(attributes[5]);
+				temp.studentFacultyRatio = Double.parseDouble(attributes[6]);
+				temp.entryRequirements = Integer.parseInt(attributes[8]);
+				temp.costOfLiving = Integer.parseInt(attributes[7]);
+				temp.graduateProspects = Double.parseDouble(attributes[10]);
+				temp.type = "";
+				temp.extraYear = false;
+				temp.researchOutput = 0;
+				temp.internationalStudentsRatio = 0;
+				temp.researchOutput = 0;
+				temp.isRussellGroup = false;
+				unis.add(temp);
+			}
 		}
 	}
 
