@@ -171,7 +171,7 @@ public class UniRanker {
 	 * Generates all universities from stored csv file of university data.
 	 */
 	public static void generateUnis() {
-		String[] lines = readFile("res/unis.csv");
+		String[] lines = readFile("resources/unis.csv");
 		int numOfUnis = lines.length + 1;
 		for (String line : lines) {
 			String[] attributes = line.split(",");
