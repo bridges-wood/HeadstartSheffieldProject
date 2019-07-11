@@ -9,6 +9,18 @@ var listOfGrades = [
   'E'
 ];
 
+var listOfCourses = [
+  'Chemistry',
+  'Civil Engineering',
+  'Computer Science',
+  'Economics',
+  'History',
+  'Marketing',
+  'Mathematics',
+  'Physics',
+  'Psychology'
+];
+
 var counter = 0;
 
 function createALevel() {
@@ -23,7 +35,6 @@ function createALevel() {
   for (var i = 0; i < listOfGrades.length; i++) {
     gradeSelect.append($('<option value="' + listOfGrades[i] + '">' + listOfGrades[i] + '</option>'));
   }
-  var spacer
   var removeSubject = $('<button class="btn btn-danger col-1 offset-1 remove-subject" onclick="removeALevel(' + counter + ')">Remove</button>');
   alevel.append(subjectSelect);
   alevel.append(gradeSelect);
@@ -53,4 +64,38 @@ function setRankings(unis) {
     card.append(collapsibleBody);
     rankingTable.append(card);
   }
+}
+
+function showCourse() {
+  location.href = 'course.php';
+}
+
+function setCourses() {
+  var courses = $('.courses');
+  for (var i = 0; i < listOfCourses.length; i++) {
+    courses.append($('<option>' + listOfCourses[i] + '</option>'));
+  }
+}
+
+function showPrefs() {
+  location.href = 'preferences.php';
+}
+
+function send() {
+  var prefs = $('.custom-range');
+  var s = '';
+  for (var i = 0; i < prefs.length; i++) {
+    var pref = prefs[i];
+    var classes = pref.className.split(' ');
+
+    for (var j = 0; j < classes.length; j++) {
+      if (classes[j] != 'custom-range' && classes[j] != 'mb-1') {
+        var metric = classes[j];
+      }
+    }
+    var val = pref.value;
+    s += metric + '|' + val + ',';
+  }
+  console.log(s);
+  location.href = 'results.php';
 }

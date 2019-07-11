@@ -15,6 +15,8 @@
     return $randomString;
   }
 
+  // if
+
   $permalink = generateRandomString();
   while (checkIfPermalinkExists($permalink)) {
     $permalink = generateRandomString();
@@ -33,13 +35,15 @@
   <title>MyRanker</title>
 </head>
 <body>
-  <div class="heading">
-    <h1 class="text-center">Your Personalised Rankings</h1>
-    <p class="text-center">Click on any individual university to reveal more information.</p>
+  <div class="heading text-center">
+    <div>
+      <img class="logo" src="resources/myranker-logo.png" alt="MyRanker Logo">
+    </div>
+    <h1>Your Personalised Rankings</h1>
+    <p>Click on any individual university to reveal more information.</p>
     <br>
     <br>
-    <p class="text-center" style="width: 100%;">Use this link to come back to your results at any time: <input style="width: 280px;" type="text" value="http://localhost/results.php?r=<?php echo $permalink; ?>"></p>
-
+    <p style="width: 100%;">Use this link to come back to your results at any time: <input style="width: 280px;" type="text" value="http://localhost/results.php?r=<?php echo $permalink; ?>"></p>
   </div>
 
   <div class="container main">
@@ -52,27 +56,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="scripts/main.js"></script>
   <script>
-    var unis = [
-      {
-        'id': 'cambridge',
-        'name': 'University of Cambridge',
-        'info': 'UoC',
-        'logo': 'https://logos-download.com/wp-content/uploads/2016/09/University_of_Cambridge_crest_logo.png'
-      },
-      {
-        'id': 'standrews',
-        'name': 'University of St Andrews',
-        'info': 'UoSA',
-        'logo': 'resources/standrews-logo.png'
-      },
-      {
-        'id': 'hull',
-        'name': 'University of Hull',
-        'info': 'UoH',
-        'logo': 'https://uk.campusclothing.com/Uploads/University/Images/63.jpg'
-      }
-    ]
-    setRankings(unis);
+
+    $.ready(function() {
+      $.get('unis.json', function (data) {
+        console.log(data);
+      });
+    });
+
+
   </script>
 </body>
 </html>
