@@ -13,8 +13,8 @@ import java.util.Map.Entry;
 
 public class UniRanker {
 
-	public static LinkedList<University> unis;
-	public static ArrayList<UniversityRanks> ranked;
+	public static LinkedList<University> unis = new LinkedList<University>();
+	public static ArrayList<UniversityRanks> ranked = new ArrayList<UniversityRanks>();
 
 	/**
 	 * Ranks the universities based on the category of data.
@@ -171,7 +171,7 @@ public class UniRanker {
 	 * Generates all universities from stored csv file of university data.
 	 */
 	public static void generateUnis() {
-		String[] lines = readFile("resources/unis.csv");
+		String[] lines = readFile("resources/unidata.csv");
 		int numOfUnis = lines.length + 1;
 		for (String line : lines) {
 			String[] attributes = line.split(",");
@@ -184,7 +184,7 @@ public class UniRanker {
 			temp.subjectSpecificRanking = numOfUnis - Integer.parseInt(attributes[6]);
 			temp.costOfLiving = Double.parseDouble(attributes[7]);
 			temp.studentFacultyRatio = Double.parseDouble(attributes[8]);
-			temp.researchOutput = Integer.parseInt(attributes[9]);
+			temp.researchOutput = (int) Double.parseDouble(attributes[9]); //THIS LINE IS INCORRECT
 			temp.entryRequirements = Integer.parseInt(attributes[10]); // UCAS points
 			temp.internationalStudentsRatio = Double.parseDouble(attributes[11]);
 			temp.extraYear = Boolean.parseBoolean(attributes[12]);
