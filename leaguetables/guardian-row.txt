@@ -1,0 +1,25 @@
+
+<td class="c-table__data c-table__data--1 c-table__data--rank u-text-align-right">1</td>
+<td class="c-table__data c-table__data--2 c-table__data--name"><button class="c-table__show-courses-button u-relative u-color-guardian-brand">
+<svg class="c-icon c-icon--plus u-absolute u-center-vh" viewbox="0 0 8 8" width="8" height="8">
+<use xlink:href="#plus"></use>
+</svg>
+<svg class="c-icon c-icon--minus u-absolute u-center-vh u-display-none" viewbox="0 0 8 8" width="8" height="8">
+<use xlink:href="#minus"></use>
+</svg></button><a class="js-institution-link c-table__institution-link" target="_blank" href="https://www.theguardian.com/education/2009/may/10/universityguide-uni-cambridge">Cambridge</a></td>
+<td class="c-table__data c-table__data--3 c-table__data--guardianScore u-text-align-right u-relative-mobile">100<button class="c-table__show-data-button u-absolute u-center-v u-color-guardian-brand">
+<svg class="c-icon c-icon--plus u-absolute u-center-vh" viewbox="0 0 8 8" width="8" height="8">
+<use xlink:href="#plus"></use>
+</svg>
+<svg class="c-icon c-icon--minus u-absolute u-center-vh u-display-none" viewbox="0 0 8 8" width="8" height="8">
+<use xlink:href="#minus"></use>
+</svg></button></td>
+<td class="c-table__data c-table__data--4 c-table__data--percentSatisfiedOverall u-text-align-right">n/a</td>
+<td class="c-table__data c-table__data--5 c-table__data--percentSatisfiedWithTeaching u-text-align-right">n/a</td>
+<td class="c-table__data c-table__data--6 c-table__data--percentSatisfiedWithAssessment u-text-align-right">n/a</td>
+<td class="c-table__data c-table__data--7 c-table__data--studentStaffRatio u-text-align-right">10.2</td>
+<td class="c-table__data c-table__data--8 c-table__data--expenditurePerStudent u-text-align-right">10</td>
+<td class="c-table__data c-table__data--9 c-table__data--averageEntryTariff u-text-align-right">230</td>
+<td class="c-table__data c-table__data--10 c-table__data--valueAdded u-text-align-right">7</td>
+<td class="c-table__data c-table__data--11 c-table__data--careerProspects u-text-align-right">96</td>
+<td class="c-table__data c-table__data--12 c-table__data--continuation u-text-align-right">98.3</td>
