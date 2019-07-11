@@ -28,7 +28,7 @@ public class Server {
 				try {
 					@SuppressWarnings("resource") // Because the server should always be up, the socket is never closed
 													// programmatically.
-					ServerSocket serverSocket = new ServerSocket(7000);
+					ServerSocket serverSocket = new ServerSocket(6000);
 					System.out.println("Waiting for clients to connect...");
 					while (true) {
 						Socket clientSocket = serverSocket.accept();
