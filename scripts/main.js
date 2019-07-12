@@ -35,7 +35,7 @@ function createALevel() {
   for (var i = 0; i < listOfGrades.length; i++) {
     gradeSelect.append($('<option value="' + listOfGrades[i] + '">' + listOfGrades[i] + '</option>'));
   }
-  var removeSubject = $('<button class="btn btn-danger col-sm-4 col-md-1 offset-md-1 remove-subject" onclick="removeALevel(' + counter + ')">Remove</button>');
+  var removeSubject = $('<button class="btn btn-danger col-sm-4 col-md-1 offset-md-1 remove-subject" onclick="removeALevel(' + counter + ')">X</button>');
   alevel.append(subjectSelect);
   alevel.append(gradeSelect);
   alevel.append(removeSubject);
