@@ -59,7 +59,7 @@
 }
 
 .permalink-display {
-  display: inline-block;
+  display: inline;
   border: 1px solid gray;
   padding: 16px;
 }

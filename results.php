@@ -216,7 +216,6 @@
         }
       }
       setRankings(v);
-      console.log(u);
 
 
 
