@@ -106,7 +106,7 @@ function send() {
 
 function tweet(permalink) {
   var url = "https://twitter.com/intent/tweet";
-  var text = 'https://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at https://myranker.co.uk! #MyRanker #university';
+  var text = 'https://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at https://myranker.co.uk! &#35;MyRanker &#35;university';
   window.open(url+"?text="+text,"width=500,height=300");
 }
 
