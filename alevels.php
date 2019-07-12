@@ -18,7 +18,7 @@
   </div>
   <div class="container main">
     <div class="alevel-container container"></div>
-    <div class="text-center mb-2">
+    <div class="text-center mb-2 mt-2">
       <button class="btn btn-danger text-center" onclick="createALevel();">Add subject</button>
     </div>
     <div class="text-center mb-2 show-prefs hidden">

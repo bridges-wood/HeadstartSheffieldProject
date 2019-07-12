@@ -24,7 +24,7 @@ var listOfCourses = [
 var counter = 0;
 
 function createALevel() {
-  var alevel = $('<div class="alevel input-group row c-' + counter + '"></div>');
+  var alevel = $('<div class="mb-2 alevel input-group row c-' + counter + '"style="margin: auto;"></div>');
   var subjectSelect = $('<select class="custom-select col-sm-12 col-md-8 subject-select"></select>');
   subjectSelect.append($('<option selected>Subject</option>'));
   for (var i = 0; i < listOfALevels.length; i++) {
