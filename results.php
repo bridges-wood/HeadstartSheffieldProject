@@ -121,7 +121,7 @@
     <p>Click on any individual university to reveal more information.</p>
     <br>
     <br>
-    <p style="width: 100%;">Use this link to come back to your results at any time: <input style="width: 300px;" type="text" value="http://myranker.co.uk/results.php?r=<?php echo $permalink; ?>"></p>
+    <p style="width: 100%;">Use this link to come back to your results at any time: <span class="permalink-display" type="text">https://myranker.co.uk/results.php?r=<?php echo $permalink; ?></span></p>
     <br>
     <br>
     <h3>Share your results!</h3>

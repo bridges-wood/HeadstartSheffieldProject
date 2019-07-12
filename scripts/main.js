@@ -106,14 +106,37 @@ function send() {
 
 function tweet(permalink) {
   var url = "https://twitter.com/intent/tweet";
-  var text = 'http://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at http://myranker.co.uk!';
+  var text = 'https://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at https://myranker.co.uk!';
   var hashtags = "MyRanker, university";
   window.open(url+"?text="+text+";hashtags="+hashtags+"","width=500,height=300");
 }
 
 function facebook(permalink) {
   var url="https://www.facebook.com/sharer/sharer.php?u=";
-  var myrankerurl = "https://www.myranker.co.uk";
-  var text = 'http://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at http://myranker.co.uk!';
+  var myrankerurl = "https://myranker.co.uk";
+  var text = 'https://myranker.co.uk/results.php?r=' + permalink + ' - These are my personalised university rankings! Find yours at https://myranker.co.uk!';
   window.open(url+myrankerurl+"&quote="+text+"","width=500,height=300");
 }
+
+function selectText(node) {
+  // https://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
+  node = document.getElementById(node);
+
+  if (document.body.createTextRange) {
+    const range = document.body.createTextRange();
+    range.moveToElementText(node);
+    range.select();
+  } else if (window.getSelection) {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(node);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else {
+    console.warn("Could not select text in node: Unsupported browser.");
+  }
+}
+
+$('.permalink-display').on('click', function() {
+  selectText($('.permalink-display')[0]);
+});
