@@ -59,6 +59,10 @@
 }
 
 .permalink-display {
+  width: 100vw;
+}
+
+.permalink-display div {
   border: 1px solid gray;
   padding: 16px;
   max-width: 90vw;
