@@ -61,6 +61,6 @@
 .permalink-display {
   border: 1px solid gray;
   padding: 16px;
-  width: 90%;
+  max-width: 90vw;
   overflow-x: scroll;
 }
