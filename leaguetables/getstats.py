@@ -64,15 +64,13 @@ def getguardianstats():
 	m = re.search('<tbody>(.*?)<\/tbody>', r.text, re.DOTALL)
 	# writes the 2nd table because there's another above it
 	guardianTable = m.group(1)
-
 	# extracts all rows of the table
 	guardianRows = re.findall('<tr ?.*?>(.*?)<\/tr>', guardianTable, re.DOTALL)
-
 	with open('guardiandata.csv', 'w+') as myfile:
 		wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 
 		for i in range(len(guardianRows)):
-			
+			print("got to here" + i)
 			# ignore odd entries (list of courses from unis)
 			
 			guardianData = re.findall('<td ?.*?>(.*?)<\/td>', guardianRows[i], re.DOTALL)
@@ -146,7 +144,7 @@ def getguardianstats():
 
 			# write the list to a csv file
 			wr.writerow(guardianData)
-
+			
 
 
 
@@ -157,7 +155,9 @@ def getguardianstats():
 	# print(researchRows) a list
 
 def main():
+	print("started")
 	getguardianstats()
+	print("finished")
 	#getstats('https://www.thecompleteuniversityguide.co.uk/league-tables/rankings?s=computer%20science')
 
 main()

@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 
 public class Server {
 
-	public static ArrayList<UniversityRanks> ranked = new ArrayList<UniversityRanks>();
+	public static ArrayList<RankedCourse> ranked = new ArrayList<RankedCourse>();
 
 	public static void main(String[] args) {
 		new Server().startServer(); // Starts server to listen for connections.
@@ -69,10 +69,8 @@ public class Server {
 		 * Sends a string over a specified socket, back to the client that submitted the
 		 * request.
 		 *
-		 * @param dataString
-		 *            The string to be sent.
-		 * @param socket
-		 *            The socket of the client.
+		 * @param dataString The string to be sent.
+		 * @param socket     The socket of the client.
 		 * @throws IOException
 		 */
 		public void send(String dataString, Socket socket) throws IOException {
@@ -80,7 +78,14 @@ public class Server {
 			DataOutputStream out = new DataOutputStream(outputStream); // Creates an output stream to the other end of
 																		// the socket.
 			System.out.println("Sending messages to the client");
-			out.writeUTF(dataString +"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // Writes data to the client.
+			out.writeUTF(dataString + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa"
+					+ "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa"
+					+ "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa"
+					+ "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa"
+					+ "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa"
+					+ "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa"
+					+ "aaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaa"); // Writes data to the client (each block is 20
+																		// a's)
 			System.out.println("Closing socket and terminating thread.");
 			out.flush(); // Cleans buffer.
 		}
@@ -88,8 +93,7 @@ public class Server {
 		/**
 		 * Receives string data from the given client socket.
 		 *
-		 * @param socket
-		 *            The clients socket.
+		 * @param socket The clients socket.
 		 * @return The string sent by the client.
 		 */
 		public String receive(Socket socket) {
