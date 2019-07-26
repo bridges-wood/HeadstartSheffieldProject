@@ -4,20 +4,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.google.gson.Gson;
+
 public class Server {
 
-	public static ArrayList<RankedCourse> ranked = new ArrayList<RankedCourse>();
+	public static UniRanker u;
 
 	public static void main(String[] args) {
 		new Server().startServer(); // Starts server to listen for connections.
-		ranked = UniRanker.rankUnis();
+		u = new UniRanker(args);
 	}
 
-	public void startServer() {
+	private void startServer() {
 		final ExecutorService clientProcessingPool = Executors.newCachedThreadPool(); // Creates our pool of threads to
 																						// process incoming text from
 																						// clients.
@@ -56,8 +58,12 @@ public class Server {
 		public void run() {
 			System.out.println("Got a client !");
 			String recieved = receive(clientSocket);
-			String toSend = GenerateJSON.go(recieved, ranked);
-			System.out.println("Data from Client: " + toSend);
+			System.out.println("Data received from client: " + recieved);
+			Gson g = new Gson();
+			Preferences p = g.fromJson(recieved, Preferences.class);
+			LinkedList<RankedCourse> curatedCourses = UniRanker.fetchCourses(p.subject, p.qualifications);
+			String toSend = GenerateJSON.go(p, curatedCourses);
+			System.out.println("Data to send: " + toSend);
 			try {
 				send(toSend, clientSocket);
 			} catch (IOException e) {
@@ -73,7 +79,7 @@ public class Server {
 		 * @param socket     The socket of the client.
 		 * @throws IOException
 		 */
-		public void send(String dataString, Socket socket) throws IOException {
+		private void send(String dataString, Socket socket) throws IOException {
 			OutputStream outputStream = socket.getOutputStream();
 			DataOutputStream out = new DataOutputStream(outputStream); // Creates an output stream to the other end of
 																		// the socket.
@@ -96,7 +102,7 @@ public class Server {
 		 * @param socket The clients socket.
 		 * @return The string sent by the client.
 		 */
-		public String receive(Socket socket) {
+		private String receive(Socket socket) {
 			try {
 				BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				String content = br.readLine();

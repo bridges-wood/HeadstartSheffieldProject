@@ -7,7 +7,7 @@
  */
 public class Preferences {
 	public String subject;
-	public Qualification[] qualifications;
+	public Qualification[] qualifications; // Need to check interpretation between string and this structure.
 	public double leagueTablePref;
 	public double studentSatisfactionPref;
 	public double employabilityPref;

@@ -14,165 +14,214 @@ import java.util.Map.Entry;
 public class UniRanker {
 
 	public static TreeMap<String, University> unis = new TreeMap<String, University>();
-	public static ArrayList<RankedCourse> relevantCourses = new ArrayList<RankedCourse>();
+	public static TreeMap<String, LinkedList<Course>> courses = new TreeMap<String, LinkedList<Course>>();
+	public static TreeMap<String, LinkedList<RankedCourse>> rankedCourses = new TreeMap<String, LinkedList<RankedCourse>>();
+
+	public UniRanker(String[] subjectsSupported) {
+		init(subjectsSupported);
+	}
+
+	/**
+	 * The initialisation method for the UniRanker Class. Generates all the
+	 * universities and courses from the stored csv file, and ranks all the courses
+	 * by subject.
+	 */
+	private static void init(String[] subjectsSupported) {
+		generateUnis();
+		generateCourses();
+		rankCourses();
+	}
+
+	public static LinkedList<RankedCourse> fetchCourses(String subject, Qualification[] qualifications) {
+		LinkedList<RankedCourse> toReturn = rankedCourses.get(subject);
+		int UCAStotal = 0;
+		for (Qualification q : qualifications) {
+			UCAStotal += Qualification.calculateUCASpoints(q);
+		}
+		for (RankedCourse rc : toReturn) {
+			if (rc.UCASrequirements > UCAStotal) {
+				toReturn.remove(rc);
+			}
+			if (!rc.requiredQualifications.equals(null)) {
+				for (Qualification q : rc.requiredQualifications) {
+					for (int i = 0; i < qualifications.length; i++) {
+						if (q.subject.equals(qualifications[i].subject)) {
+							if (Qualification.calculateUCASpoints(q) > Qualification
+									.calculateUCASpoints(qualifications[i])) {
+								toReturn.remove(rc);
+								break;
+							}
+						}
+					}
+					toReturn.remove(rc); /*
+											 * If this causes concurrent modification exceptions, just create a list of
+											 * everything that has to be removed and do it all at once. Max - 26/07/19
+											 */
+
+				}
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Ranks the universities based on the category of data.
 	 * 
-	 * @param i The ith data field on the University Object;
+	 * @param i              The ith data field on the University Object;
+	 * @param subjectCourses
 	 */
-	private static void doubleRanker(int i) {
-		TreeMap<Double, University> map = new TreeMap<Double, University>(Collections.reverseOrder());
-		for (University u : unis) {
+	private static void doubleRanker(int i, LinkedList<Course> subjectCourses) {
+		TreeMap<Double, Course> map = new TreeMap<Double, Course>(Collections.reverseOrder());
+		for (Course c : subjectCourses) {
 			switch (i) {
-			case 0:
-				map.put(u.studentSatisfaction, u);
-				break;
-			case 3:
-				map.put(u.costOfLiving, u);
+			case 2:
+				map.put(c.uni.studentSatisfaction, c);
 				break;
 			case 4:
-				map.put(u.studentFacultyRatio, u);
+				map.put(1 - c.uni.costOfLiving, c); // In reverse order as lower is better.
+				break;
+			case 5:
+				map.put(c.uni.studentFacultyRatio, c);
 				break;
 			case 7:
-				map.put(u.internationalStudentsRatio, u);
+				map.put(c.uni.internationalStudentsRatio, c);
 				break;
 			case 8:
-				map.put(u.graduateProspects, u);
+				map.put(c.uni.graduateProspects, c);
 				break;
 			}
 		}
-		Set<Entry<Double, University>> doubleSet = map.entrySet();
-		Iterator<Entry<Double, University>> doubleIt = doubleSet.iterator();
+		Set<Entry<Double, Course>> doubleSet = map.entrySet();
+		Iterator<Entry<Double, Course>> doubleIt = doubleSet.iterator();
 		int counter = 1;
 		while (doubleIt.hasNext()) {
-			Map.Entry<Double, University> me = (Map.Entry<Double, University>) doubleIt.next();
-			if (i == 0) {
-				RankedCourse temp = new RankedCourse();
-				temp.universityName = me.getValue().name;
-				temp.studentSatisfactionRank = counter;
-				ranked.add(temp);
-				System.out.println(ranked.size());
-			} else {
-				for (RankedCourse u : ranked) {
-					switch (i) {
-					case 3:
-						u.costOfLivingRank = counter;
-						break;
-					case 4:
-						u.studentFacultyRatioRank = counter;
-						break;
-					case 7:
-						u.internationalStudentsRatioRank = counter;
-						break;
-					case 8:
-						u.graduateProspectsRank = counter;
-						break;
-					}
+			Map.Entry<Double, Course> me = (Map.Entry<Double, Course>) doubleIt.next();
+			LinkedList<RankedCourse> ranked = rankedCourses.get(subjectCourses.getFirst().subject);
+			RankedCourse rc = new RankedCourse();
+			for (RankedCourse course : ranked) {
+				if (course.courseName.equals(me.getValue().courseName) && course.uni.equals(me.getValue().uni)) {
+					rc = course;
+					break;
 				}
+			}
+			switch (i) {
+			case 2:
+				rc.studentFacultyRatioRank = counter;
+			case 4:
+				rc.costOfLivingRank = counter;
+				break;
+			case 5:
+				rc.studentFacultyRatioRank = counter;
+				break;
+			case 7:
+				rc.internationalStudentsRatioRank = counter;
+				break;
+			case 8:
+				rc.graduateProspectsRank = counter;
+				break;
 			}
 			counter++;
 		}
-
 	}
 
 	/**
 	 * Ranks the universities based on the category of data.
 	 * 
-	 * @param i The ith data field on the University Object;
+	 * @param i              The ith data field on the University Object;
+	 * @param subjectCourses
 	 */
-	private static void intRanker(int i) {
-		TreeMap<Integer, University> map = new TreeMap<Integer, University>(Collections.reverseOrder());
-		for (University u : unis) {
+	private static void intRanker(int i, LinkedList<Course> subjectCourses) {
+		TreeMap<Integer, Course> map = new TreeMap<Integer, Course>(Collections.reverseOrder());
+		for (Course c : subjectCourses) {
 			switch (i) {
 			case 1:
-				map.put(u.nationwideRanking, u);
+				map.put(1 - c.subjectRank, c); // In reverse order as lower is better.
 				break;
-			case 2:
-				map.put(u.subjectSpecificRanking, u);
-				break;
-			case 5:
-				map.put(u.researchOutput, u);
+			case 3:
+				map.put(1 - c.uni.nationwideRanking, c);
 				break;
 			case 6:
-				map.put(u.entryRequirements, u);
+				map.put(c.uni.researchOutput, c);
 				break;
 			}
 		}
-		Set<Entry<Integer, University>> intSet = map.entrySet();
-		Iterator<Entry<Integer, University>> intIt = intSet.iterator();
+		Set<Entry<Integer, Course>> integerSet = map.entrySet();
+		Iterator<Entry<Integer, Course>> integerIt = integerSet.iterator();
 		int counter = 1;
-		while (intIt.hasNext()) {
-			Map.Entry<Integer, University> me = (Map.Entry<Integer, University>) intIt.next();
-			for (RankedCourse u : ranked) {
-				if (u.universityName.equals(me.getValue().name)) {
-					u.nationwideRank = counter;
-					switch (i) {
-					case 2:
-						u.nationwideRank = counter;
-						break;
-					case 3:
-						u.subjectRank = counter;
-						break;
-					case 6:
-						u.researchOutputRank = counter;
-						break;
-					case 7:
-						u.entryRequirementsRank = counter;
-						break;
-					}
+		while (integerIt.hasNext()) {
+			Map.Entry<Integer, Course> me = (Map.Entry<Integer, Course>) integerIt.next();
+			LinkedList<RankedCourse> ranked = rankedCourses.get(subjectCourses.getFirst().subject);
+			RankedCourse rc = new RankedCourse();
+			for (RankedCourse course : ranked) {
+				if (course.courseName.equals(me.getValue().courseName) && course.uni.equals(me.getValue().uni)) {
+					rc = course;
+					break;
 				}
+			}
+			switch (i) {
+			case 1:
+				rc.subjectRank = counter;
+				break;
+			case 3:
+				rc.nationwideRank = counter;
+				break;
+			case 6:
+				rc.researchOutputRank = counter;
+				break;
 			}
 			counter++;
 		}
 	}
 
 	/**
-	 * Manager for ranking of universities in all major categories.
+	 * Manager for ranking of courses in all major categories.
 	 */
-	public static ArrayList<RankedCourse> rankUnis() {
-		generateUnis();
-		// for(University u : unis) {
-		// System.out.println(u.name);
-		// }
-		for (int i = 0; i < 9; i++) {
-			switch (i) {
-			case 0:
-				doubleRanker(0);
-				break;
-			case 1:
-				intRanker(1);
-				break;
-			case 2:
-				intRanker(2);
-				break;
-			case 3:
-				intRanker(3);
-				break;
-			case 4:
-				doubleRanker(4);
-				break;
-			case 5:
-				doubleRanker(5);
-				break;
-			case 6:
-				intRanker(6);
-				break;
-			case 7:
-				intRanker(7);
-				break;
-			case 8:
-				doubleRanker(8);
-				break;
+	private static void rankCourses() {
+		for (String subject : courses.keySet()) {
+			LinkedList<Course> subjectCourses = courses.get(subject);
+			for (int i = 1; i <= 8; i++) {
+				switch (i) {
+				case 1:
+					// Subject rank
+					intRanker(1, subjectCourses);
+					break;
+				case 2:
+					// Student satisfaction
+					intRanker(2, subjectCourses);
+					break;
+				case 3:
+					// Nationwide ranking
+					doubleRanker(3, subjectCourses);
+					break;
+				case 4:
+					// Cost of living
+					doubleRanker(4, subjectCourses);
+					break;
+				case 5:
+					// Student to faculty ratio
+					doubleRanker(5, subjectCourses);
+					break;
+				case 6:
+					// Research Output
+					intRanker(6, subjectCourses);
+					break;
+				case 7:
+					// International students
+					doubleRanker(7, subjectCourses);
+					break;
+				case 8:
+					// Graduate prospects
+					doubleRanker(8, subjectCourses);
+					break;
+				}
 			}
 		}
-		return ranked;
 	}
 
 	/**
 	 * Generates all universities from stored csv file of university data.
 	 */
-	public static void generateUnis() {
+	private static void generateUnis() {
 		String[] lines = readFile("resources/unidata.csv");
 		int numOfUnis = lines.length + 1;
 		for (String line : lines) {
@@ -200,23 +249,44 @@ public class UniRanker {
 		}
 	}
 
-	public static void generateCourses() {
+	private static void generateCourses() {
 		String[] lines = readFile("resources/coursesdata.csv");
 		for (String line : lines) {
 			String[] attributes = line.split(",");
-			RankedCourse temp = new RankedCourse();
+			Course temp = new Course();
 			temp.uni = unis.get(attributes[0]);
 			temp.subject = attributes[1];
-			temp.UCASrequirements = Integer.parseInt(attributes[2]);
-			temp.requiredQualifications = Qualification.parseQualificationArray(attributes[3]);
-			temp.subjectRank = 0; // Need to count the number of courses within a particular subject and rank
-									// them.
-			temp.industrialYear = Boolean.parseBoolean(attributes[4]);
-			temp.studyAbroad = Boolean.parseBoolean(attributes[5]);
+			temp.courseName = attributes[2];
+			temp.UCASrequirements = Integer.parseInt(attributes[3]);
+			temp.requiredQualifications = Qualification.parseQualificationArray(attributes[4]);
+			temp.subjectRank = 0;
+			Integer.parseInt(attributes[5]);
+			temp.industrialYear = Boolean.parseBoolean(attributes[6]);
+			temp.studyAbroad = Boolean.parseBoolean(attributes[7]);
 			/*
 			 * Edit this to show the desired structure of the courses CSV file.
 			 */
+
+			// Add courses to all desired data structures.
 			unis.get(attributes[0]).courses.add(temp);
+			if (courses.containsKey(temp.subject)) {
+				LinkedList<Course> courseList = courses.get(temp.subject);
+				courseList.add(temp);
+				courses.put(temp.subject, courseList);
+			} else {
+				LinkedList<Course> courseList = new LinkedList<Course>();
+				courseList.add(temp);
+				courses.put(temp.subject, courseList);
+			}
+			if (rankedCourses.containsKey(temp.subject)) {
+				LinkedList<RankedCourse> courseList = rankedCourses.get(temp.subject);
+				courseList.add(RankedCourse.parseCourse(temp));
+				rankedCourses.put(temp.subject, courseList);
+			} else {
+				LinkedList<RankedCourse> courseList = new LinkedList<RankedCourse>();
+				courseList.add(RankedCourse.parseCourse(temp));
+				rankedCourses.put(temp.subject, courseList);
+			}
 		}
 	}
 

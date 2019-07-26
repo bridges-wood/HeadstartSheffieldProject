@@ -16,5 +16,5 @@ public class University {
 	public int researchOutput;
 	public double internationalStudentsRatio; // 8
 	public double graduateProspects; // 9
-	public LinkedList<RankedCourse> courses;
+	public LinkedList<Course> courses;
 }
