@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 /**
- * This object holds information about a given university.
+ * Holds information about a given university.
  * 
  * @author Max
  */

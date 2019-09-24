@@ -227,6 +227,9 @@ public class UniRanker {
 		for (String line : lines) {
 			String[] attributes = line.split(",");
 			University temp = new University();
+			for(String attr : lines) {
+				System.out.println(attr);
+			}
 			temp.name = attributes[0];
 			temp.type = attributes[1];
 			temp.isRussellGroup = Boolean.parseBoolean(attributes[2]);

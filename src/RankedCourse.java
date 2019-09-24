@@ -1,5 +1,13 @@
 
+/**
+ * Holds information about a single course, and its rank with
+ * competing courses.
+ * 
+ * @author Max
+ *
+ */
 public class RankedCourse {
+
 	public University uni; // The university at which the course is undertaken.
 	public String subject; // The name of the subject that will be studied in the course.
 	public String courseName;
@@ -16,9 +24,9 @@ public class RankedCourse {
 	public int studentFacultyRatioRank; // 5 double
 	public int researchOutputRank; // 6 int
 	public int internationalStudentsRatioRank; // 7 double
-	public int graduateProspectsRank; // 8 double 
+	public int graduateProspectsRank; // 8 double
 	public double score;
-	
+
 	public static RankedCourse parseCourse(Course c) {
 		RankedCourse rc = new RankedCourse();
 		rc.uni = c.uni;

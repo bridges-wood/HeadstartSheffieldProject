@@ -75,7 +75,7 @@
   //   die();
   // }
 
-  $fp = stream_socket_client("tcp://localhost:7000", $errno, $errstr, 5);
+  $fp = stream_socket_client("tcp://195.147.202.7:6000", $errno, $errstr, 5);
   if (!$fp) {
       echo "$errstr ($errno)<br />\n";
   } else {
