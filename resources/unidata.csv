@@ -1,10 +1,10 @@
-sheffield,University of Sheffield,city,TRUE,4.04,33,19,883,14.3,3.17,144,0.17,TRUE,85
-cambridge,University of Cambridge,campus,TRUE,4.22,1,1,863,11,3.36,160,0.14,FALSE,95
-imperial,Imperial College London,city,TRUE,4.23,5,3,932,11.3,3.5,152,0.55,TRUE,91
-st_andrews,University of St Andrews,city,FALSE,4.27,3,4,1045,11.6,2.99,144,0.30,TRUE,80
-bournemouth,Bournemouth University,city,FALSE,4.08,70,61,816,16.5,2.72,120,0.15,FALSE,90
-surrey,University of Surrey,campus,FALSE,3.92,23,32,785,15.4,2.98,128,0.36,TRUE,90
-chester,University of Chester,campus,FALSE,4,101,90,815,13.5,2.08,112,0.04,FALSE,85
-aberystwyth,Aberystwyth University,campus,FALSE,4.16,71,30,816,16.4,2.84,112,0.12,TRUE,87
-hull,University of Hull,campus,FALSE,3.81,81,49,721,16.5,2.83,112,0.10,TRUE,76
-loughborough,Loughborough University,campus,FALSE,4.26,8,22,793,14.2,2.95,128,0.10,FALSE,94
+University of Sheffield,city,TRUE,4.04,19,883,14.3,3.17,0.17,85
+University of Cambridge,campus,TRUE,4.22,1,863,11,3.36,0.14,95
+Imperial College London,city,TRUE,4.23,3,932,11.3,3.5,0.55,91
+University of St Andrews,city,FALSE,4.27,4,1045,11.6,2.99,0.30,80
+Bournemouth University,city,FALSE,4.08,61,816,16.5,2.72,0.15,90
+University of Surrey,campus,FALSE,3.92,32,785,15.4,2.98,0.36,90
+University of Chester,campus,FALSE,4,90,815,13.5,2.08,0.04,85
+Aberystwyth University,campus,FALSE,4.16,30,816,16.4,2.84,0.12,87
+University of Hull,campus,FALSE,3.81,49,721,16.5,2.83,0.10,76
+Loughborough University,campus,FALSE,4.26,22,793,14.2,2.95,0.10,94

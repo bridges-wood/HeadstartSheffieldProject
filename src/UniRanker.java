@@ -227,9 +227,6 @@ public class UniRanker {
 		for (String line : lines) {
 			String[] attributes = line.split(",");
 			University temp = new University();
-			for(String attr : lines) {
-				System.out.println(attr);
-			}
 			temp.name = attributes[0];
 			temp.type = attributes[1];
 			temp.isRussellGroup = Boolean.parseBoolean(attributes[2]);
@@ -262,8 +259,7 @@ public class UniRanker {
 			temp.courseName = attributes[2];
 			temp.UCASrequirements = Integer.parseInt(attributes[3]);
 			temp.requiredQualifications = Qualification.parseQualificationArray(attributes[4]);
-			temp.subjectRank = 0;
-			Integer.parseInt(attributes[5]);
+			temp.subjectRank = Integer.parseInt(attributes[5]);
 			temp.industrialYear = Boolean.parseBoolean(attributes[6]);
 			temp.studyAbroad = Boolean.parseBoolean(attributes[7]);
 			/*
