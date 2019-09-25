@@ -267,25 +267,30 @@ public class UniRanker {
 			 */
 
 			// Add courses to all desired data structures.
-			unis.get(attributes[0]).courses.add(temp);
-			if (courses.containsKey(temp.subject)) {
-				LinkedList<Course> courseList = courses.get(temp.subject);
-				courseList.add(temp);
-				courses.put(temp.subject, courseList);
-			} else {
-				LinkedList<Course> courseList = new LinkedList<Course>();
-				courseList.add(temp);
-				courses.put(temp.subject, courseList);
+			try {
+				unis.get(attributes[0]).courses.add(temp);
+				if (courses.containsKey(temp.subject)) {
+					LinkedList<Course> courseList = courses.get(temp.subject);
+					courseList.add(temp);
+					courses.put(temp.subject, courseList);
+				} else {
+					LinkedList<Course> courseList = new LinkedList<Course>();
+					courseList.add(temp);
+					courses.put(temp.subject, courseList);
+				}
+				if (rankedCourses.containsKey(temp.subject)) {
+					LinkedList<RankedCourse> courseList = rankedCourses.get(temp.subject);
+					courseList.add(RankedCourse.parseCourse(temp));
+					rankedCourses.put(temp.subject, courseList);
+				} else {
+					LinkedList<RankedCourse> courseList = new LinkedList<RankedCourse>();
+					courseList.add(RankedCourse.parseCourse(temp));
+					rankedCourses.put(temp.subject, courseList);
+				}
+			} catch (NullPointerException e) {
+				System.err.println(attributes[0] + " is not a recognised univeristy.");
 			}
-			if (rankedCourses.containsKey(temp.subject)) {
-				LinkedList<RankedCourse> courseList = rankedCourses.get(temp.subject);
-				courseList.add(RankedCourse.parseCourse(temp));
-				rankedCourses.put(temp.subject, courseList);
-			} else {
-				LinkedList<RankedCourse> courseList = new LinkedList<RankedCourse>();
-				courseList.add(RankedCourse.parseCourse(temp));
-				rankedCourses.put(temp.subject, courseList);
-			}
+
 		}
 	}
 
