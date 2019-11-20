@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 
 /**
  * Object containing all relevant information to qualifications.
@@ -5,19 +6,25 @@
  * @author Max
  */
 public class Qualification {
-	public static String type;
+	public String type;
 	public String subject;
-	public static String grade;
+	public String grade;
+	
+	public Qualification(String type, String subject, String grade) {
+		this.type = type;
+		this.subject = subject;
+		this.grade = grade;
+	}
 
 	public static Qualification[] parseQualificationArray(String s) {
-		// Extract specifically formatted data into the format of qualification.
-		return new Qualification[0];
+		Gson g = new Gson();
+		return g.fromJson(s, Qualification[].class);
 	}
 
 	public static int calculateUCASpoints(Qualification q) {
-		switch (type) {
+		switch (q.type) {
 		case "A-level":
-			switch (grade) {
+			switch (q.grade) {
 			case "A*":
 				return 56;
 			case "A":
